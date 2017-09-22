@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/entity/Repasse.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/web/index.xhtml</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/entity/Cheque.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/dao/BancoDao.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/web/login.xhtml</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/entity/Pessoa.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/entity/Banco.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/dao/ChequeDao.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/dao/EmpresaDao.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/entity/Empresa.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/entity/TipoPessoa.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/entity/TipoCheque.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/dao/RepasseDao.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/dao/Dao.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/dao/PessoaDao.java</file>
+            <file>file:/C:/Users/Wagner/Documents/NetBeansProjects/ControleDeCheques2/src/java/br/udesc/ceavi/controledecheques/model/dao/DaoFactory.java</file>
+        </group>
+    </open-files>
+</project-private>
