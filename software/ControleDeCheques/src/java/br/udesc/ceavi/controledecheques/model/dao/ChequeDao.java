@@ -13,37 +13,25 @@ import java.util.List;
  *
  * @author Wagner
  */
-public class ChequeDao implements Dao<Cheque>{
+public interface ChequeDao {
 
-    @Override
-    public void salvar(Cheque c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    public void salvar(Cheque c);
 
-    @Override
-    public void excluir(Cheque c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+    public void excluir(Cheque c);
 
-    @Override
-    public void pesquisar(Cheque c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+    public void pesquisar(Cheque c);
 
-    @Override
-    public void alterar(Cheque c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    public void alterar(Cheque c);
 
-    @Override
-    public List<Cheque> lista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public Cheque busca(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public List<Cheque> lista();
+
+   
+    public Cheque busca(int id);
 
     
     

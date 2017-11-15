@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             class="ls-theme-indigo"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="conteudo">
+        <h1 class="ls-title-intro ls-ico-bukets">Cheques</h1>
+
+        <p:growl id="growl" showDetail="true"/>  
+        <h:form>
+            <h:panelGrid columns="3">
+
+                <p:outputLabel value="Número: "/>
+                <p:inputText value="#{beanBanco.banco.numero}" id="in-numero"
+                             required="true" requiredMessage="Esse Campo é Obrigatório"/>                    
+                <p:message for="in-numero"/>
+
+                <p:outputLabel for="tipoPessoa" value="Tipo do Cheque:" />
+                <p:selectOneMenu id="tipoPessoa" value="#{beanCheque.tipoEscolhido}" style="width:100%">
+                    <f:selectItems value="#{beanCheque.enumTipoCheque}"/> }                 
+                </p:selectOneMenu>
+                 <p:message for="tipoPessoa"/>
+                 
+
+                <p:outputLabel value="Tipo: "/>
+                <p:inputText value="#{beanBanco.banco.nome}" id="in-tipo"
+                             required="true" requiredMessage="Esse Campo é Obrigatório"/>                    
+                <p:message for="in-tipo"/>
+                
+                <p:outputLabel value="Valor: "/>
+                <p:inputText value="#{beanBanco.banco.nome}" id="in-valor"
+                             required="true" requiredMessage="Esse Campo é Obrigatório"/>                    
+                <p:message for="in-valor"/>
+
+                <p:outputLabel value="Data de Entrada: "/>
+                <p:inputText value="#{beanBanco.banco.numero}" id="in-dataEntrada"
+                             required="true" requiredMessage="Esse Campo é Obrigatório"/>                    
+                <p:message for="in-dataEntrada"/>
+
+                <p:outputLabel value="Data de Desconto: "/>
+                <p:inputText value="#{beanBanco.banco.numero}" id="in-dataDesconto"
+                             required="true" requiredMessage="Esse Campo é Obrigatório"/>                    
+                <p:message for="in-dataDesconto"/>
+
+                <p:outputLabel value="Observação: "/>
+                <p:inputText value="#{beanBanco.banco.numero}" id="in-obs"
+                             required="true" requiredMessage="Esse Campo é Obrigatório"/>                    
+                <p:message for="in-obs"/>
+
+                 <p:outputLabel value="Sem Fundo: "/>
+<p:selectBooleanCheckbox value="#{bean.inPrint}"/>
+				
+
+<!--Data de cadastramento-->
+
+
+   <p:commandButton value="Salvar" id="salvar" actionListener="#{buttonView.buttonAction}"  class="ls-ico-upload" />
+          
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:decorate>

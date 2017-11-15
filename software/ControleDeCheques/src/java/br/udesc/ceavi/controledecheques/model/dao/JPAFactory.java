@@ -5,32 +5,36 @@
  */
 package br.udesc.ceavi.controledecheques.model.dao;
 
+import br.udesc.ceavi.controledecheques.model.dao.jpa.JPABanco;
+import br.udesc.ceavi.controledecheques.model.dao.jpa.JPACheque;
+import br.udesc.ceavi.controledecheques.model.dao.jpa.JPAEmpresa;
+import br.udesc.ceavi.controledecheques.model.dao.jpa.JPAPessoa;
+import br.udesc.ceavi.controledecheques.model.dao.jpa.JPARepasse;
 import br.udesc.ceavi.controledecheques.model.entity.Banco;
 
 /**
  *
  * @author Wagner
  */
-public class DaoFactory {
+public abstract class JPAFactory { 
 
     public BancoDao getBancoDao() {
-        return new BancoDao();
+        return new JPABanco();
     }
 
     public EmpresaDao getEmpresaDao() {
-        return new EmpresaDao();
+        return new JPAEmpresa();
     }
 
     public PessoaDao getPessoaDao() {
-        return new PessoaDao();
+        return new JPAPessoa();
     }
 
     public RepasseDao getRepasseDao() {
-        return new RepasseDao();
+        return new JPARepasse();
     }
 
     public ChequeDao getChequeDao() {
-        return new ChequeDao();
+        return new JPACheque();
     }
-
 }

@@ -12,36 +12,19 @@ import java.util.List;
  *
  * @author Wagner
  */
-public class PessoaDao implements Dao<Pessoa>{
+public interface PessoaDao {
 
-    @Override
-    public void salvar(Pessoa p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void salvar(Pessoa p);
 
-    @Override
-    public void excluir(Pessoa p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void excluir(Pessoa p);
 
-    @Override
-    public void pesquisar(Pessoa p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void pesquisar(Pessoa p);
+    
+    public void alterar(Pessoa p);
+   
+    public List<Pessoa> lista();
 
-    @Override
-    public void alterar(Pessoa p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Pessoa> lista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Pessoa busca(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    public Pessoa busca(int id);
     
 }

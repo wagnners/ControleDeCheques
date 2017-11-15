@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.ceavi.controledecheques.model.entity;
+package br.udesc.ceavi.controledecheques.bean;
 
 /**
  *
  * @author Wagner
  */
-public enum TipoPessoa {
-    FÍSICA,
-    JURÍDICA
+public class BeanRepasse {
+    
 }

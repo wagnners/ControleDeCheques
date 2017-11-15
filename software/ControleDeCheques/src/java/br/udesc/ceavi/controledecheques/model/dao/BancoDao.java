@@ -12,36 +12,18 @@ import java.util.List;
  *
  * @author Wagner
  */
-public class BancoDao implements Dao<Banco>{
-
-    @Override
-    public void salvar(Banco b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void excluir(Banco b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void pesquisar(Banco b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void alterar(Banco b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Banco> lista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Banco busca(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public interface BancoDao{
+  
+    public void salvar(Banco b);
+   
+    public void excluir(Banco b);
+    
+    public void pesquisar(Banco b);
+    
+    public void alterar(Banco b);
+    
+    public List<Banco> lista();
+    
+    public Banco busca(int id);
     
 }

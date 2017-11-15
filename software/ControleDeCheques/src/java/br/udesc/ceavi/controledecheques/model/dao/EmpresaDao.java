@@ -12,36 +12,19 @@ import java.util.List;
  *
  * @author Wagner
  */
-public class EmpresaDao implements Dao<Empresa>{
+public interface EmpresaDao{
 
-    @Override
-    public void salvar(Empresa e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+    public void salvar(Empresa e);
+    
+    public void excluir(Empresa e);
 
-    @Override
-    public void excluir(Empresa e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void pesquisar(Empresa e);
 
-    @Override
-    public void pesquisar(Empresa e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void alterar(Empresa e);
 
-    @Override
-    public void alterar(Empresa e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public List<Empresa> lista();
 
-    @Override
-    public List<Empresa> lista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Empresa busca(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Empresa busca(int id);
     
 }

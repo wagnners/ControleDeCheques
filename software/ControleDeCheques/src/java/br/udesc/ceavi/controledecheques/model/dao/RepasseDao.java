@@ -12,36 +12,18 @@ import java.util.List;
  *
  * @author Wagner
  */
-public class RepasseDao implements Dao<Repasse>{
+public interface RepasseDao{
 
-    @Override
-    public void salvar(Repasse r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void salvar(Repasse r);
 
-    @Override
-    public void excluir(Repasse r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void excluir(Repasse r);
+    
+    public void pesquisar(Repasse r);
+  
+    public void alterar(Repasse r);
 
-    @Override
-    public void pesquisar(Repasse r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public List<Repasse> lista();
 
-    @Override
-    public void alterar(Repasse r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Repasse> lista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Repasse busca(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Repasse busca(int id);
     
 }
