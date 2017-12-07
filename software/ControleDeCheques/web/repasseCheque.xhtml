@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+
+        <div class="container form-group">
+            <div class="navbar navbar-nav">
+                <div class="navbar-brand">
+                    Repasse
+                </div>       
+            </div> 
+            <div class="form-group">
+                <div class="form-group row">      
+                    <h:form styleClass="form-group  col-12">
+
+                        <div class="form-group row">
+                            <h:outputLabel value="Cheque:" styleClass="col-form-label col-sm-2 "/>
+                            <div class="col-sm-11">  
+                                <h:selectOneMenu  id="lista" class="form-control" value="#{beanRepasse.cheque}">
+                                    <f:selectItems value="#{beanCheque.listaCheques}" var="cheque"
+                                                   itemLabel="#{cheque.id} -- #{cheque.numero}" itemValue="#{cheque.numero}"/>               
+                                </h:selectOneMenu>
+
+                            </div>
+                            <div class="col-form-label-sm"> <button type="button"  data-toggle="modal" data-target="#cadastroCheque"><i class="fa fa-pencil" title="Adicionar Cheque"></i> </button></div>
+                        </div>
+                        <div class="form-group row">
+                            <h:outputLabel value="Pessoa:" styleClass="col-form-label col-sm-2 "/>
+                            <div class="col-sm-11">  
+                                <h:selectOneMenu  id="listaPessoas" class="form-control" value="#{beanRepasse.pessoa}">
+                                    <f:selectItems value="#{beanPessoa.listaPessoas}" var="pessoa"
+                                                   itemLabel="#{pessoa.id} -- #{pessoa.nome}" itemValue="#{pessoa.nome}"/>               
+                                </h:selectOneMenu>
+
+                            </div>
+                            <div class="col-form-label-sm"> <button type="button"  data-toggle="modal" data-target="#cadastroPessoa"><i class="fa fa-pencil" title="Adicionar Pessoa"></i> </button></div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <h:outputLabel value="Data:" class=" col-form-label col-sm-2  "/>
+                            <div class="col-sm-12">                
+                                <h:inputText value="#{beanRepasse.repasse.dataHora}" id="in-data"
+                                             required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                <h:message for="in-data"/>
+                            </div>
+
+                        </div>
+</h:form>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-10">
+                    <c:choose>
+                        <c:when test="#{beanRepasse.repasse.id > 0}">
+                            <h:inputHidden value="#{beanRepasse.repasse.id}"/> <!--Aqui pego o valor do id e jogo no atualizar da próxima sessão -->
+                            <h:commandButton action="#{beanRepasse.salvar()}" value="Atualizar" styleClass="btn btn-dark"/>
+                        </c:when>
+                        <c:otherwise>
+                            <h:commandButton action="#{beanRepasse.salvar()}" id="bt-salvar" value="Salvar" styleClass="btn btn-dark"/>                              
+                        </c:otherwise>
+                    </c:choose>
+
+                </div> 
+            </div>
+            <table  class="table table-bordered table-striped table-responsive-lg">
+                <thead>
+                    <tr>
+                        <th>Nº Cheque</th>
+                        <th>Pessoa/Empresa</th>
+                        <th>Data</th>
+                        <th></th>
+                        <th></th>
+                    </tr>                    
+                </thead>
+                <tbody>
+                    <ui:repeat var="repasse" value="#{beanRepasse.listaRepasses}">
+                        <tr>
+                            <td>#{repasse.cheque.numero}</td>
+                            <td>#{repasse.pessoa.nome}</td>
+                            <td>#{repasse.dataHora}</td>
+                     
+                            <td>
+                                <h:form>
+                                    <h:commandLink action="#{beanRepasse.salvar}">
+                                        <i class="fa fa-edit"></i>
+                                    </h:commandLink>
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:form>
+                                    <h:commandLink id="bt-salvar" action="#{beanRepasse.salvar()}">
+                                        <i class="fa fa-trash-o"></i>
+                                    </h:commandLink>
+                                </h:form>					
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <div class="modal" id="cadastroPessoa" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Pessoa</h5>
+                    </div>
+                    <div class="modal-body">
+
+                        <h:form styleClass="form-group col-12 ">
+                            <div class="form-group row">
+                                <h:outputLabel value="Nome:" class=" col-form-label col-sm-5  "/>
+                                <div class="col-sm-12">                
+                                    <h:inputText value="#{beanPessoa.pessoa.nome}" id="in-nome"
+                                                 required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                    <h:message for="in-nome"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <h:outputLabel value="Tipo:" styleClass="col-form-label col-sm-5 "/>
+                                <div class="col-sm-12">  
+                                    <h:selectOneMenu id="tipoPessoa" class="form-control" value="#{beanUsuario.enumTipoPessoa}">
+                                        <f:selectItems value="#{beanPessoa.enumTipoPessoa}"/>                
+                                    </h:selectOneMenu>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <h:outputLabel value="CNPJ/CPF:" class=" col-form-label col-sm-5  "/>
+                                <div class="col-sm-12">                
+                                    <h:inputText value="#{beanPessoa.pessoa.cpf_Cnpj}" id="in-cpf"
+                                                 required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                    <h:message for="in-cpf"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <h:outputLabel value="Inscrição Estadual:" class=" col-form-label col-sm-5  "/>
+                                <div class="col-sm-12">                
+                                    <h:inputText value="#{beanPessoa.pessoa.inscEstaual}" id="in-insc"
+                                                 required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                    <h:message for="in-insc"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <h:outputLabel value="Fone:" class=" col-form-label col-sm-5  "/>
+                                <div class="col-sm-12">                
+                                    <h:inputText value="#{beanPessoa.pessoa.fone}" id="in-fone"
+                                                 required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                    <h:message for="in-fone"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <h:outputLabel value="E-mail:" class=" col-form-label col-sm-5  "/>
+                                <div class="col-sm-12">                
+                                    <h:inputText value="#{beanPessoa.pessoa.mail}" id="in-mail"
+                                                 required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                    <h:message for="in-mail"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-10">
+
+                                    <h:commandButton action="#{beanPessoa.salvar()}" value="Salvar" styleClass="btn btn-secondary"/>  
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+
+                                </div> 
+                            </div>
+
+                        </h:form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal" id="cadastroCheque" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Cheque</h5>
+                    </div>
+                    <div class="modal-body">
+
+                        <h:form styleClass="form-group col-12 ">
+                            <div class="form-group row">
+                            <h:outputLabel value="Número:" class=" col-form-label col-sm-2  "/>
+                            <div class="col-sm-12">                
+                                <h:inputText value="#{beanCheque.cheque.numero}" id="in-numero"
+                                             required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório" />                    
+                                <h:message for="in-numero"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h:outputLabel value="Banco:" styleClass="col-form-label col-sm-2 "/>
+                            <div class="col-sm-11">  
+                                <h:selectOneMenu  id="listaBancos" class="form-control" value="#{beanCheque.pessoa}">
+                                    <f:selectItems value="#{beanCheque.listBancos}" var="bancos"
+                                                   itemLabel="#{bancos.id} -- #{bancos.nome}" itemValue="#{bancos.nome}"/>               
+                                </h:selectOneMenu>
+
+                            </div>
+                            <div class="col-form-label-sm"> <button type="button"  data-toggle="modal" data-target="#cadastroBanco"><i class="fa fa-pencil" title="Adicionar Banco"></i> </button></div>
+                        </div>
+                        <div class="form-group row">
+                            <h:outputLabel value="Pessoa:" styleClass="col-form-label col-sm-2 "/>
+                            <div class="col-sm-11">  
+                                <h:selectOneMenu id="listaPessoas" class="form-control" value="#{beanCheque.pessoa}">
+                                    <f:selectItems value="#{beanPessoa.listaPessoas}" var="pessoa"
+                                                   itemLabel="#{pessoa.id} -- #{pessoa.nome}" itemValue="#{pessoas.nome}"/>              
+                                </h:selectOneMenu>
+
+                            </div>
+                            <div class=" col-form-label-sm" > <button  type="button"  data-toggle="modal" data-target="#cadastroPessoa"><i  class="fa fa-pencil" title="Adicionar Pessoa"></i> </button></div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <h:outputLabel value="Valor:" class=" col-form-label col-sm-2  "/>
+                            <div class="col-sm-12">                
+                                <h:inputText value="#{beanCheque.cheque.valor}" id="in-valor"
+                                             required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                <h:message for="in-valor"/>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <h:outputLabel value="Tipo:" styleClass="col-form-label col-sm-2 "/>
+                            <div class="col-sm-12">  
+                                <h:selectOneMenu id="tipoCheque" class="form-control" value="#{beanCheque.valor}">
+                                    <f:selectItems value="#{beanCheque.enumTipoCheque}"/>                
+                                </h:selectOneMenu>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <h:outputLabel value="Data de Desconto:" class=" col-form-label col-sm-2  "/>
+                            <div class="col-sm-12">                
+                                <h:inputText value="#{beanUsuario.empresa.usuario}" id="in-dt-desconto"
+                                             required="false" class="form-control" />                    
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h:outputLabel value="Data de Entrada:" class=" col-form-label col-sm-2 "/>
+                            <div class="col-sm-12">                
+                                <h:inputText value="#{beanUsuario.empresa.usuario}" id="in-dt-entrada"
+                                             required="false" class="form-control" />                    
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h:outputLabel value="Observação:" class=" col-form-label col-sm-2  "/>
+                            <div class="col-sm-12">                
+                                <h:inputText value="#{beanUsuario.empresa.senha}" id="in-obs"
+                                             required="false" class="form-control"/>                    
+
+                            </div>
+                        </div>
+
+                        </h:form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </ui:define>
+
+
+</ui:decorate>

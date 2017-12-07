@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface BancoDao{
   
-    public void salvar(Banco b);
+    public Banco salvar(Banco b);
    
     public void excluir(Banco b);
     

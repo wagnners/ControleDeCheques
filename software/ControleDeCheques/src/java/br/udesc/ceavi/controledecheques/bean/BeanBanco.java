@@ -6,28 +6,42 @@
 package br.udesc.ceavi.controledecheques.bean;
 
 import br.udesc.ceavi.controledecheques.model.dao.BancoDao;
+import br.udesc.ceavi.controledecheques.model.dao.JPAFactory;
 import br.udesc.ceavi.controledecheques.model.dao.jpa.JPABanco;
 import br.udesc.ceavi.controledecheques.model.entity.Banco;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.model.UploadedFile;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Wagner
  */
+@ManagedBean
+@ViewScoped
 public class BeanBanco {
     private Banco banco;
     private BancoDao dao;
+    private List<Banco> listaBancos;
 
     public BeanBanco() {
         banco = new Banco();
-        dao = new JPABanco();
+        dao = JPAFactory.getBancoDao(); 
     }
+    public List<Banco> getListaBancos() {
+        return dao.lista();
+    }   
     
-    public String salvar() {
+    
+    public String salvarDisco() {
         dao.salvar(banco);
-        return "index";
+        return "cadastroBanco.jsf";
     }
 
 

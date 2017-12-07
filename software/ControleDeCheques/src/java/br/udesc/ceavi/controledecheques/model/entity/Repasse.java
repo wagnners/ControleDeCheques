@@ -5,14 +5,25 @@
  */
 package br.udesc.ceavi.controledecheques.model.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
 /**
  *
  * @author Wagner
  */
+@Entity
 public class Repasse {
+    
+    @Id
+    @GeneratedValue
     private int id;
+    @JoinColumn (name="cheque_id")
     private Cheque cheque;
-    private String data;
+    private String datahora;
+    @JoinColumn (name="pessoa_id")
     private Pessoa pessoa;
 
     public int getId() {
@@ -31,12 +42,12 @@ public class Repasse {
         this.cheque = cheque;
     }
 
-    public String getData() {
-        return data;
+    public String getDataHora() {
+        return datahora;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDataHora(String data) {
+        this.datahora = data;
     }
 
     public Pessoa getPessoa() {

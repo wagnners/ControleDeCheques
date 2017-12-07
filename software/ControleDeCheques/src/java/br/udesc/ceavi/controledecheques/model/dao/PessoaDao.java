@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface PessoaDao {
 
-    public void salvar(Pessoa p);
+    public Pessoa salvar(Pessoa p);
 
     public void excluir(Pessoa p);
 

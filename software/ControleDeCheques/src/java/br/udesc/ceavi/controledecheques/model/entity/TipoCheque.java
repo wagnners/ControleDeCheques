@@ -10,6 +10,21 @@ package br.udesc.ceavi.controledecheques.model.entity;
  * @author Wagner
  */
 public enum TipoCheque {
-    PRE,
-    BOM
+    PRE("Pré"),
+    BOM("Bom");
+
+    private final String nome;
+
+     public TipoCheque[] asList(){
+        return TipoCheque.values();
+    }
+     
+    TipoCheque(String nome) {
+        this.nome = nome;
+    }
+    
+      @Override
+    public String toString() {
+        return this.nome;
+    }
 }

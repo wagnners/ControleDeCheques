@@ -5,13 +5,23 @@
  */
 package br.udesc.ceavi.controledecheques.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Wagner
  */
+@Entity
 public class Banco {
-   private int id;
-   private String nome;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    private int id;
+    private String nome;
 
     public int getId() {
         return id;
@@ -28,5 +38,5 @@ public class Banco {
     public void setNome(String nome) {
         this.nome = nome;
     }
-   
+
 }

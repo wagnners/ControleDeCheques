@@ -16,7 +16,7 @@ import java.util.List;
 public interface ChequeDao {
 
     
-    public void salvar(Cheque c);
+    public Cheque salvar(Cheque c);
 
    
     public void excluir(Cheque c);

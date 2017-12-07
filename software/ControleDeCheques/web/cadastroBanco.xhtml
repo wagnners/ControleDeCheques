@@ -7,31 +7,91 @@ and open the template in the editor.
 <!DOCTYPE html>
 <ui:decorate xmlns="http://www.w3.org/1999/xhtml"
              xmlns:h="http://xmlns.jcp.org/jsf/html"
-             class="ls-theme-indigo"
+             xmlns:f="http://java.sun.com/jsf/core"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template.xhtml"
-             xmlns:p="http://primefaces.org/ui">
+             xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <ui:define name="conteudo">
-        <h1 class="ls-title-intro ls-ico-document">Bancos</h1>
+    <ui:define name="content">
 
-        <p:growl id="growl" showDetail="true"/>  
-        <h:form>
-            <h:panelGrid columns="3">
-                <p:outputLabel value="Nome do Banco: "/>
-                <p:inputText value="#{beanBanco.banco.nome}" id="in-nome"
-                             required="true" requiredMessage="Esse Campo é Obrigatório"/>                    
-                <p:message for="in-nome"/>
-                
-                <!--      teste-->
-                
-                <!--      teste-->
+        <div class="container form-group">
+            <div class="navbar navbar-nav">
+                <div class="navbar-brand">
+                    Bancos
+                </div>       
+            </div> 
+             <div class="form-group">
+                <div class="form-group row">      
+                    <h:form styleClass="form-group col-12">
+                        <div class="form-group row">
+                            <h:outputLabel value="Nome do Banco:" class=" col-form-label col-sm-2  "/>
+                            <div class="col-sm-12">                
+                                <h:inputText value="#{beanBanco.banco.nome}" id="in-nome"
+                                             required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                <h:message for="in-nome"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-10">
+                                <c:choose>
+                                    <c:when test="#{beanBanco.banco.id > 0}">
+                                            <h:inputHidden value="#{beanBanco.banco.id}"/>
+                                        <h:commandButton action="#{beanBanco.salvar()}" value="Atualizar" styleClass="btn btn-dark"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <h:commandButton action="#{beanBanco.salvar()}" value="Salvar" styleClass="btn btn-dark"/>                              
+                                    </c:otherwise>
+                                </c:choose>
 
-   <p:commandButton value="Salvar" id="salvar" actionListener="#{buttonView.buttonAction}"  class="ls-ico-upload" />
-          
-                                          
-            </h:panelGrid>
-    </h:form>
+                            </div> 
+                        </div>
+
+                    </h:form>
+                    <table  class="table table-bordered table-striped table-responsive-lg">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Banco</th>
+                                <th></th>
+                                <th></th>
+                            </tr>                    
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="bancos" value="#{beanBanco.listaBancos}">
+                                <tr>
+                                    <td>#{bancos.id}</td>
+                                    <td>#{bancos.nome}</td>
+					<td>
+						<h:form>
+                                                    <h:commandLink action="#{beanBanco.salvar}">
+                                                        <i class="fa fa-edit"></i>
+                                                    </h:commandLink>
+						</h:form>
+					</td>
+					<td>
+						<h:form>
+                                                    <h:commandLink action="#{beanBanco.salvar()}">
+                                                    <i class="fa fa-trash-o"></i>
+                                                    </h:commandLink>
+						</h:form>					
+					</td>
+				</tr>
+			</ui:repeat>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        
     </ui:define>
-  
+
+
 </ui:decorate>

@@ -7,7 +7,12 @@ package br.udesc.ceavi.controledecheques.model.dao.jpa;
 
 import br.udesc.ceavi.controledecheques.model.dao.PessoaDao;
 import br.udesc.ceavi.controledecheques.model.entity.Pessoa;
+import br.udesc.ceavi.controledecheques.model.entity.Pessoa;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -15,14 +20,42 @@ import java.util.List;
  */
 public class JPAPessoa implements PessoaDao{
 
+public EntityManager getEM(){
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("ControleDeChequesPU");
+        return factory.createEntityManager();
+    }
+
     @Override
-    public void salvar(Pessoa p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Pessoa salvar (Pessoa p) {
+         EntityManager em = getEM();
+         try{
+         em.getTransaction().begin();
+         em.persist(p);
+         em.getTransaction().commit();
+         }catch (Exception e){
+              System.out.println("mais um teste"+ p.getData_cadastro());
+             em.getTransaction().rollback();
+            
+         }finally{
+             em.close();
+         }
+         return p;
     }
 
     @Override
     public void excluir(Pessoa p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         EntityManager em = null;
+        try {
+            em = getEM();
+            em.getTransaction().begin();
+            p = em.merge(p);
+            em.remove(p);
+            em.getTransaction().commit();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
 
     @Override
@@ -37,12 +70,31 @@ public class JPAPessoa implements PessoaDao{
 
     @Override
     public List<Pessoa> lista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = null;
+        try {
+            em = getEM();
+            Query consulta = em.createQuery("select p from Pessoa p");
+            return consulta.getResultList();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
+    
 
     @Override
     public Pessoa busca(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                EntityManager em = null;
+        try {
+            em = getEM();
+            return em.find(Pessoa.class, id);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
     
 }
+

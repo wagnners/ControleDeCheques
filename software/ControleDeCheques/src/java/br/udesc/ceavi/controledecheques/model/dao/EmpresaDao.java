@@ -15,7 +15,7 @@ import java.util.List;
 public interface EmpresaDao{
 
    
-    public void salvar(Empresa e);
+    public Empresa salvar(Empresa e);
     
     public void excluir(Empresa e);
 
@@ -24,6 +24,7 @@ public interface EmpresaDao{
     public void alterar(Empresa e);
 
     public List<Empresa> lista();
+  
 
     public Empresa busca(int id);
     

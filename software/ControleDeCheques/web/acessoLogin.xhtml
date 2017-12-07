@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+
+        <div class="container form-group">
+            <div class="navbar navbar-nav">
+                <div class="navbar-brand">
+                    Usuário
+                </div>       
+            </div> 
+            <div class="form-group">
+                <div class="form-group row">      
+                    <h:form styleClass="form-group col-12">
+                        <div class="form-group row">
+                            <h:outputLabel value="Nome:" class=" col-form-label col-sm-1  "/>
+                            <div class="col-sm-10">                
+                                <h:inputText value="#{beanUsuario.pessoa.nome}" id="in-nome"
+                                             required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                <h:message for="in-nome"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h:outputLabel value="Tipo:" styleClass="col-form-label col-sm-1 "/>
+                            <div class="col-sm-10">  
+                                <h:selectOneMenu id="tipoPessoa" class="form-control" value="#{beanPessoa.tipoEscolhido}">
+                                    <f:selectItems var="tipo" value="#{beanUsuario.enumTipoPessoa}"/>                
+                            </h:selectOneMenu>
+                             
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <h:outputLabel value="Usuário:" class=" col-form-label col-sm-1  "/>
+                            <div class="col-sm-10">                
+                                <h:inputText value="#{beanUsuario.empresa.usuario}" id="in-usuario"
+                                             required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                <h:message for="in-usuario"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h:outputLabel value="Senha:" class=" col-form-label col-sm-1  "/>
+                            <div class="col-sm-10">                
+                                <h:inputText value="#{beanUsuario.empresa.senha}" id="in-senha"
+                                             required="true" class="form-control"  requiredMessage="Esse Campo é Obrigatório"/>                    
+                                <h:message for="in-senha"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-10">
+                                <c:choose>
+                                    <c:when test="#{beanUsuario.empresa.id > 0}">
+                                           <h:inputHidden value="#{beanBanco.banco.id}"/> <!--Aqui pego o valor do id e jogo no atualizar da próxima sessão -->
+                                        <h:commandButton action="#{beanBanco.salvar()}" value="Atualizar" styleClass="btn btn-dark"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <h:commandButton action="#{beanUsuario.salvar()}" value="Salvar" styleClass="btn btn-dark"/>                              
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </div> 
+                        </div>
+
+                    </h:form>
+                    <table  class="table table-bordered table-striped table-responsive-lg">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>User</th>
+                                <th></th>
+                                <th></th>
+                            </tr>                    
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="usuarios" value="#{beanUsuario.listaUsuarios}">
+                                <tr>
+                                    <td>#{usuarios.id}</td>
+                                    <td>#{usuarios.pessoa.nome}</td>
+                                    <td>#{usuarios.usuario}</td>
+					<td>
+						<h:form>
+                                                    <h:commandLink action="#{beanBanco.salvar}">
+                                                        <i class="fa fa-edit"></i>
+                                                    </h:commandLink>
+						</h:form>
+					</td>
+					<td>
+						<h:form>
+                                                    <h:commandLink action="#{beanBanco.salvar()}">
+                                                    <i class="fa fa-trash-o"></i>
+                                                    </h:commandLink>
+						</h:form>					
+					</td>
+				</tr>
+			</ui:repeat>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <!--<div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-1">
+
+                    <p:growl id="growl" showDetail="true"/>  
+                    <h:form class="form-group">
+                        <h:panelGrid columns="3">
+
+                            <h:outputLabel value="Número: "/>
+                            <h:inputText value="#{beanCheque.cheque.numero}" id="in-numero"
+                                         required="true" class="form-control form-group" requiredMessage="Esse Campo é Obrigatório"/>                    
+                            <h:message for="in-numero"/>
+
+                            <h:outputLabel for="tipoPessoa" value="Tipo do Cheque:" />
+                            <h:selectOneMenu id="tipoPessoa" class="form-group custom-select" value="#{beanCheque.tipoEscolhido}" style="width:100%">
+                                <f:selectItems value="#{beanCheque.enumTipoCheque}"/>                
+                            </h:selectOneMenu>
+                            <h:message for="tipoPessoa"/>
+
+
+                            <h:outputLabel value="Tipo: "/>
+                            <h:inputText value="#{beanBanco.banco.nome}" id="in-tipo"
+                                         required="true" class="form-control form-group" requiredMessage="Esse Campo é Obrigatório"/>                    
+                            <h:message for="in-tipo"/>
+
+                            <h:outputLabel value="Valor: "/>
+                            <h:inputText value="#{beanBanco.banco.nome}" id="in-valor"
+                                         required="true" class="form-control form-group" requiredMessage="Esse Campo é Obrigatório"/>                    
+                            <h:message for="in-valor"/>
+
+                                                      
+                            <h:outputLabel for="mask" value="Data de Entrada: " />
+                            <p:calendar id="mask" value="#{beanCheque.cheque.data_entrada}" pattern="dd-MM-yyyy" mask="true" required="true" class="form-control form-group" requiredMessage="Esse Campo é Obrigatório" />
+                            <h:outputLabel value=""/>
+
+                             <h:outputLabel for="mask2" value="Data de Desconto: " />
+                             <p:calendar id="mask2" value="#{beanCheque.cheque.data_desconto}" pattern="dd-MM-yyyy" mask="true" required="true" class="form-control form-group" requiredMessage="Esse Campo é Obrigatório" />
+                            <h:outputLabel value=""/>
+                           
+
+                            <h:outputLabel value="Observação: "/>
+                            <h:inputText  value="#{beanCheque.cheque.observacao}" id="in-obs"
+                                          required="true" class="form-control form-group" requiredMessage="Esse Campo é Obrigatório"/>                    
+                            <h:message for="in-obs"/>
+
+                            <h:outputLabel value="Sem Fundo: "/>
+                            <p:selectBooleanCheckbox class="form-control form-group" value="#{beanCheque.cheque.sem_Fundo}"/>
+
+
+                            Data de cadastramento
+
+
+                            <h:commandButton value="Salvar" id="salvar" actionListener="#{buttonView.buttonAction}"  class="btn btn-dark btn-lg align-items-center" />
+
+                        </h:panelGrid>
+                    </h:form>
+
+
+
+                </div>
+
+
+                <div class="col-md-6 order-2">
+                    <div class="p-5">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    One of three columns
+                                </div>
+                                <div class="col-sm">
+                                    One of three columns
+                                </div>
+                                <div class="col-sm">
+                                    One of three columns
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+    </ui:define>
+
+
+</ui:decorate>

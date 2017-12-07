@@ -8,6 +8,10 @@ package br.udesc.ceavi.controledecheques.model.dao.jpa;
 import br.udesc.ceavi.controledecheques.model.dao.RepasseDao;
 import br.udesc.ceavi.controledecheques.model.entity.Repasse;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -15,6 +19,10 @@ import java.util.List;
  */
 public class JPARepasse implements RepasseDao{
 
+    public EntityManager getEM(){
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("ControleDeChequesPU");
+        return factory.createEntityManager();
+    }
     @Override
     public void salvar(Repasse r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -37,7 +45,16 @@ public class JPARepasse implements RepasseDao{
 
     @Override
     public List<Repasse> lista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         EntityManager em = null;
+        try {
+            em = getEM();
+            Query consulta = em.createQuery("select r from Repasse r");
+            return consulta.getResultList();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
 
     @Override

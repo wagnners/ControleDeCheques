@@ -10,7 +10,7 @@ import br.udesc.ceavi.controledecheques.model.dao.jpa.JPACheque;
 import br.udesc.ceavi.controledecheques.model.dao.jpa.JPAEmpresa;
 import br.udesc.ceavi.controledecheques.model.dao.jpa.JPAPessoa;
 import br.udesc.ceavi.controledecheques.model.dao.jpa.JPARepasse;
-import br.udesc.ceavi.controledecheques.model.entity.Banco;
+
 
 /**
  *
@@ -18,23 +18,24 @@ import br.udesc.ceavi.controledecheques.model.entity.Banco;
  */
 public abstract class JPAFactory { 
 
-    public BancoDao getBancoDao() {
+    public static BancoDao getBancoDao() {
         return new JPABanco();
     }
+    
 
-    public EmpresaDao getEmpresaDao() {
+    public static EmpresaDao getEmpresaDao() {
         return new JPAEmpresa();
     }
 
-    public PessoaDao getPessoaDao() {
+    public static PessoaDao getPessoaDao() {
         return new JPAPessoa();
     }
 
-    public RepasseDao getRepasseDao() {
+    public static RepasseDao getRepasseDao() {
         return new JPARepasse();
     }
 
-    public ChequeDao getChequeDao() {
+    public static ChequeDao getChequeDao() {
         return new JPACheque();
     }
 }

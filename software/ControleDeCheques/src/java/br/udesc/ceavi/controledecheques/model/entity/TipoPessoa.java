@@ -10,6 +10,25 @@ package br.udesc.ceavi.controledecheques.model.entity;
  * @author Wagner
  */
 public enum TipoPessoa {
-    FÍSICA,
-    JURÍDICA
+    FISICA(1, "Fisica"),
+    JURIDICA(2, "Pessoa Juridica");
+    
+    private int valor;
+    private String nome;
+    
+    TipoPessoa(int valor, String nome) {
+        this.valor = valor;
+        this.nome = nome;
+    }
+    
+    public TipoPessoa[] asList(){
+        return TipoPessoa.values();
+    }
+
+    @Override
+    public String toString() {
+        return this.nome;
+    }
+    
+    
 }

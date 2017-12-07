@@ -5,19 +5,33 @@
  */
 package br.udesc.ceavi.controledecheques.model.entity;
 
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+
 /**
  *
  * @author Wagner
  */
+@Entity
 public class Pessoa {
+    
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private int id;
     private String nome;
-    private TipoPessoa tipo;
-    private String cpfCnpj;
-    private String inscEstadual;
+    private int tipo;
+    private String cpf_cnpj;
+    private String inscricao_estadual;
     private String fone;
-    private String mail;
-    private String dataCadastro;
+    private String email;
+    @Column(name = "data_cadastro", insertable = false, updatable = false)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date data_cadastro;
 
     public int getId() {
         return id;
@@ -35,28 +49,28 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public TipoPessoa getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoPessoa tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 
-    public String getCpfCnpj() {
-        return cpfCnpj;
+    public String getCpf_Cnpj() {
+        return cpf_cnpj;
     }
 
     public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
+        this.cpf_cnpj= cpfCnpj;
     }
 
-    public String getInscEstadual() {
-        return inscEstadual;
+    public String getInscEstaual() {
+        return inscricao_estadual;
     }
 
     public void setInscEstadual(String inscEstadual) {
-        this.inscEstadual = inscEstadual;
+        this.inscricao_estadual = inscEstadual;
     }
 
     public String getFone() {
@@ -68,19 +82,19 @@ public class Pessoa {
     }
 
     public String getMail() {
-        return mail;
+        return email;
     }
 
     public void setMail(String mail) {
-        this.mail = mail;
+        this.email = mail;
     }
 
-    public String getDataCadastro() {
-        return dataCadastro;
+    public Date getData_cadastro() {
+        return data_cadastro;
     }
 
-    public void setDataCadastro(String dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setData_cadastro(Date data_cadastro) {
+        this.data_cadastro = data_cadastro;
     }
     
     
